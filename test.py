@@ -1,13 +1,19 @@
-import sys
+"""Do some basic mathy things."""
 
 from asiargo import allez_cuisine, command
 
 @command
-def add(a: int, b: int = 5, *, dry_run: bool = False):
+def add(a: int, b: int = 1, *, verbose=False):
     """Sum two integers"""
-    if dry_run:
-        print("It's a dry run!")
+    if verbose:
+        print("The sum is: ", end="")
     print(a + b)
 
+@command
+def subtract(*numbers: int):
+    """Subtract some integers"""
+    first, *rest = numbers
+    print(first - sum(rest))
+
 if __name__ == '__main__':
-    sys.exit(allez_cuisine(__doc__))
+    allez_cuisine(__doc__)
